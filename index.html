@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PT. Bhumi Architrade — Konsultan Perencanaan & Desain Terintegrasi</title>
+<title>PT. Bhumi Nata Jayawarsa — Konsultan Perencanaan & Desain Terintegrasi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -406,15 +406,175 @@
     font-size:13px;color:var(--concrete);
   }
 
+  /* ── HAMBURGER MENU ── */
+  .hamburger{
+    display:none;background:none;border:none;cursor:pointer;
+    padding:6px;flex-direction:column;gap:5px;z-index:60;
+  }
+  .hamburger span{
+    display:block;width:22px;height:2px;background:var(--ink);
+    transition:all .3s ease;border-radius:1px;
+  }
+  .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+  .hamburger.active span:nth-child(2){opacity:0;}
+  .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+  .mobile-nav{
+    display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:55;
+    background:rgba(242,239,233,0.98);backdrop-filter:blur(16px);
+    flex-direction:column;align-items:center;justify-content:center;gap:28px;
+    opacity:0;pointer-events:none;transition:opacity .3s ease;
+  }
+  .mobile-nav.open{display:flex;opacity:1;pointer-events:auto;}
+  .mobile-nav a{
+    font-family:'Fraunces',serif;font-size:26px;font-weight:500;
+    color:var(--ink);transition:color .2s;padding:8px 0;
+  }
+  .mobile-nav a:hover{color:var(--blueprint);}
+
+  /* ── RESPONSIVE: LARGE TABLETS & SMALL DESKTOPS ── */
+  @media (max-width:1024px){
+    .hero .wrap{grid-template-columns:1fr 1fr;gap:40px;}
+    .hero h1{font-size:clamp(32px,4.5vw,52px);}
+    .steps{grid-template-columns:1fr 1fr;}
+    .contact-grid{gap:40px;}
+  }
+
+  /* ── RESPONSIVE: TABLETS ── */
   @media (max-width:860px){
-    .navlinks{display:none;}
-    .hero .wrap{grid-template-columns:1fr;}
-    .gallery{grid-template-columns:1fr;}
+    .wrap{padding:0 24px;}
+    nav{padding:16px 24px;}
+
+    /* Hide desktop nav, show hamburger */
+    .navlinks{display:none !important;}
+    .nav-cta{display:none !important;}
+    .hamburger{display:flex;}
+
+    /* Hero */
+    .hero{padding:130px 0 70px;}
+    .hero .wrap{grid-template-columns:1fr;gap:36px;}
+    .hero h1{font-size:clamp(30px,6vw,44px);max-width:100%;}
+    .hero p.lede{max-width:100%;}
+    .blueprint-frame{max-width:480px;aspect-ratio:16/10;}
+
+    /* About */
+    .about-cards{grid-template-columns:1fr;}
+    .about-card{padding:36px 28px;}
+
+    /* Gallery */
+    .gallery{grid-template-columns:repeat(2,1fr);}
+    .card .thumb{aspect-ratio:4/3;}
+
+    /* Services */
     .service-row{grid-template-columns:40px 1fr;}
     .service-row p{grid-column:2;}
+    .service-row h3{font-size:20px;}
+
+    /* Steps */
     .steps{grid-template-columns:1fr 1fr;}
-    .contact-grid{grid-template-columns:1fr;}
-    .about-grid{grid-template-columns:1fr;gap:40px;}
+    .step{padding:24px 20px;}
+
+    /* Contact */
+    .contact-grid{grid-template-columns:1fr;gap:40px;}
+
+    /* Section spacing */
+    section{padding:80px 0;}
+    .section-head{margin-bottom:40px;}
+
+    /* Footer */
+    footer{padding:30px 0;}
+
+    /* Lightbox mobile adjustments */
+    .lightbox{padding:14px 12px 10px;}
+    .lb-arrow{width:40px;height:40px;font-size:18px;}
+    .lightbox-stage img{max-height:55vh;}
+    .lightbox-title{font-size:14px;max-width:50vw;}
+    .lb-thumb{width:52px;height:38px;}
+  }
+
+  /* ── RESPONSIVE: MOBILE PHONES ── */
+  @media (max-width:600px){
+    .wrap{padding:0 18px;}
+    nav{padding:14px 18px;}
+    .logo{font-size:16px;}
+
+    /* Hero */
+    .hero{padding:110px 0 56px;}
+    .hero h1{font-size:clamp(26px,7vw,36px);}
+    .hero p.lede{font-size:15px;margin-top:18px;}
+    .hero-actions{flex-direction:column;gap:12px;}
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost{text-align:center;padding:14px 20px;width:100%;}
+    .blueprint-frame{max-width:100%;aspect-ratio:4/3;}
+
+    /* About */
+    .about-lead{font-size:15px;margin-bottom:36px;}
+    .about-card{padding:28px 22px;}
+    .about-card h3{font-size:clamp(20px,5vw,26px);}
+
+    /* Gallery – single column on small phones */
+    .gallery{grid-template-columns:1fr;}
+    .card .info{padding:16px 18px 20px;}
+    .card .info h3{font-size:17px;}
+
+    /* Services */
+    .service-row{grid-template-columns:1fr;gap:8px;padding:24px 0;}
+    .service-row .num{display:none;}
+    .service-row p{grid-column:1;}
+    .service-row h3{font-size:19px;}
+    .service-row:hover{padding-left:0;}
+
+    /* Steps */
+    .steps{grid-template-columns:1fr;}
+    .step h4{font-size:18px;}
+
+    /* Contact */
+    .contact-info .item .val{font-size:15px;}
+
+    /* Form */
+    .field input, .field select, .field textarea{font-size:16px;}  /* prevents iOS zoom */
+    form .submit{width:100%;text-align:center;}
+
+    /* Section spacing */
+    section{padding:64px 0;}
+    .section-head{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:32px;}
+    .section-head h2{font-size:clamp(24px,6vw,34px);}
+    .section-head p{max-width:100%;}
+
+    /* Lightbox mobile */
+    .lightbox{padding:10px 8px 8px;}
+    .lightbox-middle{gap:6px;}
+    .lb-arrow{width:36px;height:36px;font-size:16px;border:none;background:rgba(255,255,255,0.1);}
+    .lightbox-stage img{max-height:50vh;}
+    .lightbox-topbar{margin-bottom:8px;}
+    .lightbox-title{font-size:13px;max-width:45vw;}
+    .lightbox-counter{font-size:12px;}
+    .lightbox-close{font-size:22px;}
+    .lightbox-caption{font-size:12px;margin-top:8px;}
+    .lb-thumb{width:44px;height:33px;}
+    .lightbox-thumbstrip{gap:5px;margin-top:10px;}
+    .lightbox-bar{margin-top:8px;}
+    .lightbox-bar button{padding:6px 10px;font-size:12px;}
+
+    /* Welcome modal */
+    .welcome-card{max-width:100%;margin:12px;border-radius:6px;}
+    .welcome-content{padding:28px 20px;}
+    .welcome-title{font-size:clamp(20px,5vw,26px);}
+    .welcome-desc{font-size:14px;margin-bottom:22px;}
+
+    /* Footer */
+    footer{padding:24px 0;font-size:12px;}
+  }
+
+  /* ── RESPONSIVE: VERY SMALL PHONES ── */
+  @media (max-width:380px){
+    .wrap{padding:0 14px;}
+    .hero h1{font-size:24px;}
+    .hero p.lede{font-size:14px;}
+    .btn-primary,.btn-ghost{padding:12px 16px;font-size:13px;}
+    .eyebrow{font-size:10px;}
+    .welcome-content{padding:24px 16px;}
+    .mobile-nav a{font-size:22px;}
   }
 </style>
 </head>
@@ -431,14 +591,26 @@
       <a href="#kontak">Kontak</a>
     </div>
     <a href="#kontak" class="nav-cta">Jadwalkan Konsultasi</a>
+    <button class="hamburger" id="hamburger-btn" aria-label="Buka menu navigasi">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 </header>
+
+<!-- Mobile Navigation Overlay -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="#tentang" class="mobile-nav-link">Tentang</a>
+  <a href="#karya" class="mobile-nav-link">Karya</a>
+  <a href="#layanan" class="mobile-nav-link">Layanan</a>
+  <a href="#konsultasi" class="mobile-nav-link">Konsultasi</a>
+  <a href="#kontak" class="mobile-nav-link">Kontak</a>
+</nav>
 
 <section class="hero">
   <div class="wrap">
     <div>
       <div class="eyebrow">Konsultan Perencanaan & Desain Terintegrasi</div>
-      <h1>Menghidupkan Ruang, <em>Menjaga Alam</em></h1>
+      <h1>Crafting Your Dream With Sustainable <em>& Eco-Engineering Design.</em></h1>
       <p class="lede">Konsultan perencanaan dan desain terintegrasi yang berfokus pada penciptaan ruang berkelanjutan dengan akar kearifan lokal yang kuat.</p>
       <div class="hero-actions">
         <a href="#kontak" class="btn-primary">Mulai Konsultasi</a>
@@ -473,7 +645,8 @@
     <div class="about-cards">
       <div class="about-card">
         <div class="card-label">Visi</div>
-        <h3>Menghidupkan Ruang, Menjaga Alam</h3>
+        <p style="font-family:'Fraunces',serif;font-size:clamp(18px,2.2vw,24px);font-weight:500;color:var(--ink);margin-top:0;line-height:1.35;">Enlivening Space, Protecting Nature</p>
+        <p class="mission-id">Menghidupkan ruang, menjaga alam.</p>
       </div>
       <div class="about-card">
         <div class="card-label">Misi</div>
@@ -588,7 +761,6 @@
         </div>
         <div class="info"><div class="tag">Proses Pembangunan</div><h3>Ghufron House</h3><div class="meta">Konstruksi Struktur &amp; Pemasangan Bata</div></div>
       </div>
-    </div>
     </div>
   </div>
 </section>
@@ -740,8 +912,8 @@
 
 <footer>
   <div class="wrap" style="display:flex;justify-content:space-between;width:100%;flex-wrap:wrap;gap:16px;">
-    <div>© 2026 PT. Bhumi Architrade. Semua hak dilindungi.</div>
-    <div>Menghidupkan Ruang, Menjaga Alam.</div>
+    <div>© 2026 PT. Bhumi Nata Jayawarsa. Semua hak dilindungi.</div>
+    <div>Enlivening Space, Protecting Nature.</div>
   </div>
 </footer>
 
@@ -751,7 +923,7 @@
     <button type="button" class="welcome-close" id="welcome-close-btn" onclick="document.getElementById('welcome-overlay').classList.remove('show'); document.body.style.overflow='';" aria-label="Tutup popup">&times;</button>
     <div class="welcome-img">
       <div class="welcome-img-badge">
-        <div class="tag">PT. Bhumi Architrade</div>
+        <div class="tag">PT. Bhumi Nata Jayawarsa</div>
         <div class="title">Arsitektur &amp; Desain Terintegrasi</div>
       </div>
     </div>
@@ -833,6 +1005,41 @@ function kirimKeWA(event) {
   var url = 'https://wa.me/6282338029278?text=' + encodeURIComponent(pesan);
   window.open(url, '_blank');
 }
+</script>
+
+<script>
+/* ── Hamburger Menu Toggle ── */
+(function(){
+  const hamburger = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  if(hamburger && mobileNav){
+    hamburger.addEventListener('click', function(){
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobileLinks.forEach(function(link){
+      link.addEventListener('click', function(){
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* ── Welcome Popup Skip Button ── */
+  var skipBtn = document.getElementById('welcome-skip-btn');
+  if(skipBtn){
+    skipBtn.addEventListener('click', function(){
+      var overlay = document.getElementById('welcome-overlay');
+      if(overlay){ overlay.classList.remove('show'); }
+      document.body.style.overflow = '';
+    });
+  }
+})();
 </script>
 
 <script>
@@ -988,6 +1195,26 @@ function kirimKeWA(event) {
     e.preventDefault();
     setZoom(scale + (e.deltaY < 0 ? 0.1 : -0.1));
   }, { passive: false });
+
+  /* ── Touch swipe for mobile ── */
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var touchEndX = 0;
+
+  lightbox.addEventListener('touchstart', function(e){
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, {passive: true});
+
+  lightbox.addEventListener('touchend', function(e){
+    touchEndX = e.changedTouches[0].screenX;
+    var diffX = touchStartX - touchEndX;
+    var diffY = Math.abs(touchStartY - e.changedTouches[0].screenY);
+    if(Math.abs(diffX) > 50 && diffY < 100){
+      if(diffX > 0) goTo(currentIndex + 1);  /* swipe left = next */
+      else goTo(currentIndex - 1);            /* swipe right = prev */
+    }
+  }, {passive: true});
 })();
 
 /* ── Welcome Modal Auto-Open ── */
